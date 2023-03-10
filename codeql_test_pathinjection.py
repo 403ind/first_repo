@@ -16,4 +16,4 @@ def normalize(x):
 @app.route("/path")
 def simple():
     x = source()
-    open(x)  # $result=BAD
+    open("") # not x
