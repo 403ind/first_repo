@@ -21,3 +21,6 @@ def safe(request):
 # FP reported in https://github.com/github/codeql/issues/3712
 # This does not define a regex (but could be used by other code to do so)
 escaped = re.escape("https://www.humblebundle.com/home/library")
+
+
+# Add something
