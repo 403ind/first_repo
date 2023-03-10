@@ -21,9 +21,21 @@ def safe(request):
 @app.route("/command1")
 def command_injection1():
     files = request.args.get('files', '')
-    # Don't let files be `; rm -rf /`
-    os.system("ls " + files) # $result=BAD    
+    os.system("ls " + files)
 
+@app.route("/command3")
+def first_arg_injection():
+    cmd = request.args.get('cmd', '')
+    subprocess.Popen([cmd, "param1"])
+
+@app.route("/command2")
+def command_injection2():
+    files = request.args.get('files', '')
+    subprocess.Popen("ls " + files, shell=True) 
+    
+
+
+    
 # FP reported in https://github.com/github/codeql/issues/3712
 # This does not define a regex (but could be used by other code to do so)
 escaped = re.escape("https://www.humblebundle.com/home/library")
